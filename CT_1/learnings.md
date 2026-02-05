@@ -56,6 +56,7 @@ C. __The Connectivity Approach (Graphs)__
 7. __Why Paper 2 is special?__
     - While it has lower accuracy than Paper 1, Paper 2 is unique because it focuses on __non-stationarity__. Most models assume EEG signals are stable, but they aren't. Paper 2 also targets __Consumer Electronics__, meaning it aims to be __lightweight enough to run on a wearable device or a smartphone, rather than a powerful lab server__. //generate for other papers likewise; also, whats stationarity;
 
+---
 #### Practice Test Solutions
 
 ## Section A: Core Concepts
@@ -93,6 +94,7 @@ C. __The Connectivity Approach (Graphs)__
 
 12. Overfitting Risks: With only 52 subjects, there is a high risk that the model "memorizes" the specific voices or brain patterns of those individuals rather than learning "what depression looks like." To mitigate this, these papers use __10-fold Cross-Validation__ (training on 90%, testing on 10%, and repeating) and __Transfer Learning__ (using a model already trained on millions of images/sounds).
 
+---
 ## Paper Analysis
 
 #### Paper 1: Brain Sciences 2024 (DenseNet121 Multimodal Fusion)
@@ -149,3 +151,13 @@ C. __The Connectivity Approach (Graphs)__
 - Innovation/Novelty: The first application of the wav2vec 2.0 framework for automatic high-quality voice feature extraction in depression recognition.
 
 - MLDC Steps: Audio segmentation and merging, Automated Feature Extraction (wav2vec 2.0 feature encoder), Fine-tuning (Small classification network), and Multi-classification (Severity levels).
+
+---
+## Technical Concepts and Definitions
+
+#### EEG Channels and Electrodes
+- 128-channel EEG: This refers to the use of 128 individual electrodes (sensors) placed on the scalp. High-density EEG (like 128 or 256 channels) provides significantly better spatial resolution, allowing researchers to pinpoint exactly which brain regions (e.g., frontal vs. temporal) are showing abnormal activity.
+- EEG as Electrodes vs. Pixels:
+    - CNNs (Grid of Pixels): Treat EEG data like an image. It captures patterns in time and frequency but often ignores the actual physical distance between electrodes on the scalp.
+    - GNNs (Graph Nodes): Treat each electrode as a node. EMO-GCN is an Adaptive Multi-Graph Neural Network that connects these nodes with "edges" representing biological or functional relationships, effectively modeling brain connectivity.
+
