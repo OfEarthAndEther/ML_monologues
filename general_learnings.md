@@ -122,3 +122,37 @@ X_test_imputed = imputer.transform(X_test)
     - **Unique Variance**: Linear Regression works by calculating the "partial derivative"—the change in $y$ for a change in $x_1$ while holding $x_2$ constant. If $x_1$ and $x_2$ are multicollinear, you cannot hold one constant while the other changes.
     - **Vectorization Efficiency**: High multicollinearity can make the matrix $(X^T X)$ nearly singular (non-invertible). This causes the Vectorized math to fail or produce "garbage" results during the fit() process.
     - **Redundancy (Pitfall 2)**: It violates the principle of Irrelevant feature selection. Keeping both doesn't add new information; it just adds "noise" that can lead to Overfitting.
+
+## 3. Normality of Residuals (assumption of linear regression: 3rd)
+- This assumption states that the errors (residuals) of your model should follow a Normal Distribution (a bell curve) with a mean of zero.
+
+- Explanation: When you subtract your predicted values from the actual values ($y_{test} - y_{pred}$), the resulting differences should be mostly small and centered around zero, with large errors being rare.
+
+- Significance: This is crucial for Hypothesis Testing. If your residuals aren't normal, the $p$-values and confidence intervals for your coefficients (like the ones for Duration or Pulse) become unreliable.
+
+- How to Validate: * Histogram: Plot a histogram of your residual variable using sns.histplot(residual, kde=True). It should look like a symmetric bell.
+    - Q-Q Plot: A "Quantile-Quantile" plot should show the residuals falling along a straight diagonal line.
+
+## 4. Homoscedasticity
+- This is a fancy way of saying "Constant Variance." It assumes that the spread of your residuals is the same across all levels of your input features.
+
+- Explanation: If you plot your residuals against your predicted values, the "cloud" of dots should look like a rectangular band.
+
+- The Opposite (Heteroscedasticity): This is the "Funnel Shape" we discussed earlier. It happens when your model is very accurate for small values (e.g., short workouts) but gets wildly inaccurate for large values (e.g., long workouts).
+
+- Significance: If your model is heteroscedastic, your Standard Errors will be wrong. This can lead you to believe a feature is "significant" when it actually isn't—a major hurdle in the ML Workflow.
+
+- How to Validate: Look at your Residual Plot. If the dots spread out as you move from left to right, you have failed this assumption.
+
+## 5. No Autocorrelation of Errors
+- This assumption states that the residual (error) for one observation should not be correlated with the residual of another.
+
+- Explanation: Each row in your data_calories.csv should be an independent event. If the error in Row 1 helps me predict the error in Row 2, the data is "autocorrelated."
+
+- Significance: This usually happens in Time-Series data (e.g., if you recorded your pulse every minute during a single workout). If autocorrelation exists, your model will think it has more "independent" information than it actually does, leading to a false sense of accuracy (underestimated MSE).
+
+- How to Validate:
+
+    - Durbin-Watson Test: A score of 2.0 means no autocorrelation. Scores near 0 or 4 indicate a problem.
+
+    - Residual vs. Time Plot: If you plot residuals in order of time and see a pattern (like a wave), you have autocorrelation.
