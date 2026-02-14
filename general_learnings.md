@@ -87,3 +87,24 @@ ridge_reg = Ridge(alpha=1.0)
 ridge_reg.fit(X_train, Y_train)
 ```
 
+## Imputation
+- Imputation is a statistical and data preprocessing technique used to replace missing data with substituted values.
+- **Why Impute Data?**
+    - In your lecture slides, Missing Data is listed as Pitfall 3 in building a successful ML program. If you simply delete rows with missing values (a process called "Listwise Deletion"), you risk:
+        - Losing Valuable Information: You might throw away 50% of your dataset just because one column has a few missing spots.
+        - Introducing Bias: If data is missing for a specific reason (e.g., lower-income households being less likely to report income), deleting those rows makes your model unrepresentative of that group.
+
+```
+from sklearn.impute import SimpleImputer
+import numpy as np
+
+# 1. Initialize the imputer (using median for housing data)
+imputer = SimpleImputer(strategy='median')
+
+# 2. Fit and transform your features
+# Remember: Fit on Train, only Transform on Test to avoid leakage!
+X_train_imputed = imputer.fit_transform(X_train)
+X_test_imputed = imputer.transform(X_test)
+```
+
+## 
