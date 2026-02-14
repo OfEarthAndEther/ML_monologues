@@ -107,4 +107,18 @@ X_train_imputed = imputer.fit_transform(X_train)
 X_test_imputed = imputer.transform(X_test)
 ```
 
-## 
+## HyperPlane
+- 1. **The Significance of the Hyperplane**
+    - In a simple model with one feature (like Duration vs. Calories), your "hyperplane" is a 1D line ($y = mx + b$).
+    - **Dimensionality**: In a **3D space** (two features like Duration and Pulse), the **hyperplane is a 2D flat plane**. In **4D or higher** (like your 784-pixel MNIST vectors), the hyperplane is an $(n-1)$ dimensional subspace.
+    - **The Decision Surface**: It represents the "best guess" for every possible combination of inputs. The model's goal is to position this plane so that the Residuals (the vertical distance from each data point to the plane) are as small as possible.
+- 2. **How Multicollinearity Destabilizes the Hyperplane**
+    - Multicollinearity (Assumption 2) occurs when two independent variables are highly correlated—meaning they tell the same story. Looking at your data, Pulse and Maxpulse are classic candidates for this.
+    - **The "Wobbly Table" Effect**: Imagine a table top (the hyperplane) supported by two legs (features) placed right next to each other because they are nearly identical. The table becomes incredibly unstable.
+    - **Coefficient Inflation**: Mathematically, the model struggles to decide which feature should get the credit for the change in the target. This causes the coefficients ($w_i$) to swing wildly with even tiny changes in the data, leading to Pitfall 6: Miscalculated features.
+    - **Loss of Interpretability**: You can no longer say "Increasing Pulse by 1 unit increases Calories by X," because Pulse and Maxpulse move together. The unique impact of each is "smudged".
+- 3. **Why Multicollinearity Must be Absent**
+    - This assumption exists to protect the reliability of your model's logic.
+    - **Unique Variance**: Linear Regression works by calculating the "partial derivative"—the change in $y$ for a change in $x_1$ while holding $x_2$ constant. If $x_1$ and $x_2$ are multicollinear, you cannot hold one constant while the other changes.
+    - **Vectorization Efficiency**: High multicollinearity can make the matrix $(X^T X)$ nearly singular (non-invertible). This causes the Vectorized math to fail or produce "garbage" results during the fit() process.
+    - **Redundancy (Pitfall 2)**: It violates the principle of Irrelevant feature selection. Keeping both doesn't add new information; it just adds "noise" that can lead to Overfitting.
