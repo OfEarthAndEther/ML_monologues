@@ -156,3 +156,13 @@ X_test_imputed = imputer.transform(X_test)
     - Durbin-Watson Test: A score of 2.0 means no autocorrelation. Scores near 0 or 4 indicate a problem.
 
     - Residual vs. Time Plot: If you plot residuals in order of time and see a pattern (like a wave), you have autocorrelation.
+
+## ANOVA & QQ Plot
+ANOVA (Analysis of Variance) relies on the assumption that the residuals of your model are normally distributed to provide accurate $p$-values. The Q-Q plot is the visual tool you use to "audit" that assumption before trusting your ANOVA results.
+1. Data Transformation
+This is the process of applying a mathematical function to every value in a column to "squash" outliers or fix skewness.
+    - Log Transformation ($\ln(x)$): Best for Right-Skewed data or when you have "Heavy Tails". It compresses large values more than small ones, which often pulls extreme outliers closer to the mean.
+    - Square Root Transformation ($\sqrt{x}$): A milder version of the log transform. It’s useful for "count" data (like the number of steps or pulses) where the variance increases with the mean.
+    - Adding a Quadratic Term ($x^2$)
+        - Sometimes a straight line (hyperplane) isn't enough.
+        - Significance: If your scatter plot shows a curve (U-shape or inverted U), adding a term like $Duration^2$ allows the model to "bend" the hyperplane to fit the data. This often solves issues with **Homoscedasticity and Normality** simultaneously.
