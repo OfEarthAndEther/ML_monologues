@@ -166,3 +166,22 @@ This is the process of applying a mathematical function to every value in a colu
     - Adding a Quadratic Term ($x^2$)
         - Sometimes a straight line (hyperplane) isn't enough.
         - Significance: If your scatter plot shows a curve (U-shape or inverted U), adding a term like $Duration^2$ allows the model to "bend" the hyperplane to fit the data. This often solves issues with **Homoscedasticity and Normality** simultaneously.
+
+## Numerical practice on LOgistics REgression
+
+1. **Graph plot question**
+![question image](image.png)
+
+Sol:
+![1st img](image-1.png)
+![2nd img](image-2.png)
+![3rd img](image-3.png)
+![4th img](image-4.png)
+![5th img](image-5.png)
+![final ans summary](image-6.png)
+
+2. **Log Odds Probabilty LOgistics reg numerical**
+![question & hints](image-7.png)
+
+3. **Threshold value adjustment effect**
+![question & hints](image-8.png)
