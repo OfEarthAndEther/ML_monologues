@@ -1,0 +1,41 @@
+{
+  "exp1": {
+    "name": "RAVDESS(en) \u2192 EMODB(de)",
+    "stage1_uar": 0.6701388888888888,
+    "stage1_acc": 0.5291666666666667,
+    "zeroshot_uar": 0.45468076754335324,
+    "zeroshot_acc": 0.5794392523364486,
+    "final_uar": 0.6354575163398692,
+    "final_acc": 0.5039370078740157,
+    "tl_improvement": 0.180776748796516
+  },
+  "exp2": {
+    "name": "EMODB(de) \u2192 RAVDESS(en)",
+    "stage1_uar": 0.8016651104886399,
+    "stage1_acc": 0.7716535433070866,
+    "zeroshot_uar": 0.4496527777777778,
+    "zeroshot_acc": 0.49583333333333335,
+    "final_uar": 0.5052083333333333,
+    "final_acc": 0.48333333333333334,
+    "tl_improvement": 0.05555555555555547
+  },
+  "exp3": {
+    "name": "EMOVO(it) \u2192 EMODB(de)",
+    "stage1_uar": 0.0,
+    "stage1_acc": 0.0,
+    "zeroshot_uar": 0.5099986893443698,
+    "zeroshot_acc": 0.7401869158878505,
+    "final_uar": 0.540725178960473,
+    "final_acc": 0.7559055118110236,
+    "tl_improvement": 0.030726489616103247
+  },
+  "exp4": {
+    "name": "EMODB(de) \u2192 EMOVO(it)",
+    "stage1_uar": 0.8016651104886399,
+    "zeroshot_uar": 0.17261904761904762,
+    "zeroshot_acc": 0.34523809523809523,
+    "final_uar": 0.10714285714285714,
+    "final_acc": 0.21428571428571427,
+    "tl_improvement": -0.06547619047619048
+  }
+}
